@@ -1,0 +1,146 @@
+<div class="container mb-5">
+  <h2 class="mt-2 text-center">Register</h2>
+
+  <form class="col mt-4" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3 col-5 mt-3">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        placeholder="Name"
+      >
+      <small
+        *ngIf="fieldHasError('name', 'required')"
+        class="form-text invalid-form-text">
+        Enter your name
+      </small>
+    </div>
+    <div class="mb-3 col-5">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="surname"
+        placeholder="Surname"
+      >
+      <small
+        *ngIf="fieldHasError('surname', 'required')"
+        class="form-text invalid-form-text">
+        Enter your surname
+      </small>
+    </div>
+    <div class="mb-3 col-5">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="patronymic"
+        placeholder="Patronymic"
+      >
+      <small
+        *ngIf="fieldHasError('patronymic', 'required')"
+        class="form-text invalid-form-text">
+        Enter your patronymic
+      </small>
+    </div>
+    <div class="mb-3 col-5">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="phoneNumber"
+        placeholder="Phone number"
+      >
+      <small
+        *ngIf="fieldHasError('phoneNumber', 'required')"
+        class="form-text invalid-form-text">
+        Enter your phone number
+      </small>
+      <small
+        *ngIf="fieldHasError('phoneNumber', 'phoneNumber')"
+        class="form-text invalid-form-text">
+        Enter correct phone number
+      </small>
+      <div class="form-text">
+        Enter the phone number in the format +996-XXX-YYYYYY
+      </div>
+    </div>
+    <div class="mb-3 col-5">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="workOrStudy"
+        placeholder="Place of work or study"
+      >
+      <small
+        *ngIf="fieldHasError('workOrStudy', 'required')"
+        class="form-text invalid-form-text">
+        Enter your place of work or study
+      </small>
+    </div>
+    <div>
+      <div class="form-check mt-3">
+        <input
+          class="form-check-input"
+          type="radio"
+          formControlName="gender"
+          id="flexRadioDefault1"
+          value="male"
+        >
+        <label class="form-check-label" for="flexRadioDefault1">
+          Male
+        </label>
+      </div>
+      <div class="form-check mb-3">
+        <input
+          class="form-check-input"
+          type="radio"
+          formControlName="gender"
+          id="flexRadioDefault2"
+          value="female"
+        >
+        <label class="form-check-label" for="flexRadioDefault2">
+          Female
+        </label>
+      </div>
+    </div>
+
+    <div class="col-5 mb-3">
+      <select
+        class="form-select"
+        formControlName="size"
+        aria-label="Default select example"
+      >
+        <option value="">T-shirt size</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <small
+        *ngIf="fieldHasError('size', 'required')"
+        class="form-text invalid-form-text">
+        Select your size
+      </small>
+    </div>
+
+    <div class="form-floating col-8 mb-3">
+      <textarea
+        class="form-control"
+        placeholder="Leave a comment here"
+        id="floatingTextarea"
+        formControlName="comments"
+      ></textarea>
+      <small
+        *ngIf="fieldHasError('comments', 'required')"
+        class="form-text invalid-form-text">
+        Enter your comments
+      </small>
+      <label for="floatingTextarea">Comments</label>
+      <div class="form-text">
+        Characters: 300
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-success"
+    >Submit</button>
+  </form>
+</div>
