@@ -1,1 +1,34 @@
-<p>applications works!</p>
+<div class="text-center mt-5" *ngIf="loading">
+  <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+<div *ngIf="!loading">
+  <div class="card m-auto mt-2 text-center col-8 border-4" *ngFor="let item of applications">
+    <div class="card-header">
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ item.name }} {{ item.surname }} {{ item.patronymic }}</h5>
+      <p class="card-text m-0">Your phone: <strong>{{ item.phoneNumber }}</strong> </p>
+      <p class="card-text m-0">Your place of work or study: <strong>{{ item.workOrStudy }}</strong> </p>
+      <p class="card-text m-0">Gender: <strong>{{ item.gender }}</strong></p>
+      <p class="card-text m-0">Your size: <strong>{{ item.size }}</strong></p>
+      <div *ngFor="let skill of item.skills; let i = index">
+        <p class="card-text m-0">Your skill: <strong>{{ skill }}</strong></p>
+        <p class="card-text m-0">Your level: <strong>{{ i }}</strong></p>
+      </div>
+      <p class="card-text m-0">Your comments: <strong>{{ item.comments }}</strong></p>
+      <a [routerLink]="[item.id]" class="btn btn-primary">Edit application</a>&nbsp;
+      <button *ngIf="deleteLoading" class="btn btn-danger" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Loading...
+      </button>
+      <a *ngIf="!deleteLoading" (click)="onRemove(item.id)" class="btn btn-danger">Delete application</a>
+    </div>
+  </div>
+</div>
+

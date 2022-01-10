@@ -138,11 +138,6 @@
               <option value="Vue">Vue</option>
               <option value="JavaScript">JavaScript</option>
             </select>
-            <small
-              *ngIf="fieldHasError('skill', 'required')"
-              class="form-text invalid-form-text">
-              Select your skill
-            </small>
             <select
               class="form-select me-1"
               formControlName="level"
@@ -154,18 +149,18 @@
               <option value="Senior">Senior</option>
               <option value="Team lead">Team lead</option>
             </select>
-            <small
-              *ngIf="fieldHasError('level', 'required')"
-              class="form-text invalid-form-text">
-              Select your skill of level
-            </small>
           </div>
-          <small
-            *ngIf="fieldHasError('skills', 'required')"
-            class="form-text invalid-form-text">
-            Select your skill of level
-          </small>
         </div>
+        <small
+          *ngIf="skillsHasError('skill', 'required')"
+          class="form-text invalid-form-text d-block">
+          Select your skill
+        </small>
+        <small
+          *ngIf="skillsHasError('level', 'required')"
+          class="form-text invalid-form-text">
+          Select your skill of level
+        </small>
       </div>
     </div>
 
@@ -175,6 +170,7 @@
         placeholder="Leave a comment here"
         id="floatingTextarea"
         formControlName="comments"
+        (keyup)="onCharactersCount()"
       ></textarea>
       <small
         *ngIf="fieldHasError('comments', 'required')"
@@ -183,10 +179,11 @@
       </small>
       <label for="floatingTextarea">Comments</label>
       <div class="form-text">
-        Characters: 300
+        Characters: {{ comments }}
       </div>
     </div>
     <button
+      [disabled]="userForm.invalid"
       type="submit"
       class="btn btn-success"
     >Submit</button>

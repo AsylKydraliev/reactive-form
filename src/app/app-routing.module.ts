@@ -9,7 +9,7 @@ const routes: Routes = [
   {path: '', component: FormComponent},
   {path: 'application', component: ApplicationComponent},
   {path: 'applications', component: ApplicationsComponent},
-  {path: 'applications-list/:id', component: FormComponent},
+  {path: 'applications/:id', component: FormComponent},
   {path: '**', component: NotFoundcomponent}
 ];
 
