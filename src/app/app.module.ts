@@ -9,6 +9,7 @@ import { ApplicationComponent } from './application.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NotFoundcomponent } from './not-found.component';
+import { PhoneValidatorDirective } from './shared/phone-validator.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NotFoundcomponent } from './not-found.component';
     FormComponent,
     ApplicationsComponent,
     ApplicationComponent,
-    NotFoundcomponent
+    NotFoundcomponent,
+    PhoneValidatorDirective
   ],
   imports: [
     BrowserModule,

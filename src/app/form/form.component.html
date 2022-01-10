@@ -47,10 +47,11 @@
         class="form-control"
         formControlName="phoneNumber"
         placeholder="Phone number"
+        appPhone
       >
       <small
         *ngIf="fieldHasError('phoneNumber', 'required')"
-        class="form-text invalid-form-text">
+        class="form-text invalid-form-text d-block">
         Enter your phone number
       </small>
       <small
@@ -119,6 +120,53 @@
         class="form-text invalid-form-text">
         Select your size
       </small>
+    </div>
+
+    <div class="col-5 mb-3" formArrayName="skills">
+      <button (click)="addSkill()" type="button" class="btn btn-outline-info mb-2">Add skill</button>
+      <div class="mb-2" *ngFor="let skill of getSkillControls(); let i = index">
+        <div [formGroupName]="i" class="w-100 d-flex">
+          <div class="d-flex">
+            <select
+              class="form-select me-2"
+              formControlName="skill"
+              aria-label="Default select example"
+            >
+              <option value="">Select skills</option>
+              <option value="React">React</option>
+              <option value="Angular">Angular</option>
+              <option value="Vue">Vue</option>
+              <option value="JavaScript">JavaScript</option>
+            </select>
+            <small
+              *ngIf="fieldHasError('skill', 'required')"
+              class="form-text invalid-form-text">
+              Select your skill
+            </small>
+            <select
+              class="form-select me-1"
+              formControlName="level"
+              aria-label="Default select example"
+            >
+              <option value="">Level of skill</option>
+              <option value="Junior">Junior</option>
+              <option value="Middle">Middle</option>
+              <option value="Senior">Senior</option>
+              <option value="Team lead">Team lead</option>
+            </select>
+            <small
+              *ngIf="fieldHasError('level', 'required')"
+              class="form-text invalid-form-text">
+              Select your skill of level
+            </small>
+          </div>
+          <small
+            *ngIf="fieldHasError('skills', 'required')"
+            class="form-text invalid-form-text">
+            Select your skill of level
+          </small>
+        </div>
+      </div>
     </div>
 
     <div class="form-floating col-8 mb-3">

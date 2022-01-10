@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { phoneValidator } from '../shared/phone-validator.directive';
 
 @Component({
   selector: 'app-form',
@@ -15,11 +16,17 @@ export class FormComponent implements OnInit {
       name: new FormControl('', Validators.required),
       surname: new FormControl('', Validators.required),
       patronymic: new FormControl('', Validators.required),
-      phoneNumber: new FormControl('', [Validators.required]),
+      phoneNumber: new FormControl('', [
+        Validators.required, phoneValidator,
+      ]),
       workOrStudy: new FormControl('',Validators.required),
       gender: new FormControl('', Validators.required),
       size: new FormControl('', Validators.required),
-      comments: new FormControl('', Validators.required),
+      skills: new FormArray([]),
+      comments: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(300)
+      ]),
     });
   }
 
@@ -29,6 +36,21 @@ export class FormComponent implements OnInit {
 
   fieldHasError(fieldName: string, errorType: string){
     const field = this.userForm.get(fieldName);
+    console.log(field?.touched, field?.errors)
     return Boolean(field && field.touched && field.errors?.[errorType]);
+  }
+
+  addSkill() {
+    const skills = <FormArray>this.userForm.get('skills');
+    const skillGroup = new FormGroup({
+      skill: new FormControl('', Validators.required),
+      level: new FormControl('', Validators.required),
+    })
+    skills.push(skillGroup);
+  }
+
+  getSkillControls() {
+    const skills = <FormArray>this.userForm.get('skills');
+    return skills.controls;
   }
 }
