@@ -2,7 +2,8 @@
   margin: 15px auto;
   padding: 15px 50px;
   width: 60%;
-  box-shadow: inset  1px 2px 7px 5px #F4F4F4;
+  box-shadow: 1px 2px 10px 8px #F4F4F4;
+  border-radius: 5px;
 }
 
 small{

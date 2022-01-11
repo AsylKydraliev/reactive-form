@@ -31,8 +31,18 @@ export class ApplicationService {
         }
         return Object.keys(result).map(id => {
           const data = result[id];
-          return new Application(id, data.name, data.surname, data.patronymic, data.phoneNumber, data.workOrStudy,
-            data.gender, data.size, data.skills, data.comments);
+          return new Application(
+            id,
+            data.name,
+            data.surname,
+            data.patronymic,
+            data.phoneNumber,
+            data.workOrStudy,
+            data.gender,
+            data.size,
+            data.skills,
+            data.comments
+          );
         })
       }))
       .subscribe(applications => {
@@ -87,7 +97,6 @@ export class ApplicationService {
       .subscribe(() => {
           this.getApplications();
           this.deleteLoading.next(false);
-        }
-      );
+        });
   }
 }

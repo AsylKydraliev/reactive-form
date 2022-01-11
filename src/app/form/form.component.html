@@ -167,12 +167,12 @@
           </div>
         </div>
         <small
-          *ngIf="skillsHasError('skill', 'required')"
+          *ngIf="skillsHasError('skill', 'required', i)"
           class="form-text invalid-form-text d-block">
           Select your skill
         </small>
         <small
-          *ngIf="skillsHasError('level', 'required')"
+          *ngIf="skillsHasError('level', 'required', i)"
           class="form-text invalid-form-text">
           Select your skill of level
         </small>

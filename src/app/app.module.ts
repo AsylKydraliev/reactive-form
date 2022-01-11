@@ -8,8 +8,8 @@ import { ApplicationsComponent } from './applications/applications.component';
 import { ApplicationComponent } from './application.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NotFoundcomponent } from './not-found.component';
 import { PhoneValidatorDirective } from './shared/phone-validator.directive';
+import { NotFoundComponent } from './not-found.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { PhoneValidatorDirective } from './shared/phone-validator.directive';
     FormComponent,
     ApplicationsComponent,
     ApplicationComponent,
-    NotFoundcomponent,
+    NotFoundComponent,
     PhoneValidatorDirective
   ],
   imports: [

@@ -17,6 +17,8 @@ export class FormComponent implements OnInit {
   applicationId = '';
   application: Application | null = null;
   clickAdd = false;
+  applicationUpdate = false;
+  editCount = 0;
 
   constructor(
     private applicationService: ApplicationService,
@@ -45,6 +47,7 @@ export class FormComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.application = <Application | null>data.application;
       if(this.application){
+        this.applicationUpdate = true;
         this.applicationId = this.application.id;
         this.setFormValue({
           name: this.application.name,
@@ -110,31 +113,40 @@ export class FormComponent implements OnInit {
     return Boolean(field && field.touched && field.errors?.[errorType]);
   }
 
-  skillsHasError(fieldName: string, errorType: string){
+  skillsHasError(fieldName: string, errorType: string, index: number){
     const skills = <FormArray>this.userForm.get('skills');
-    const field = skills.controls[0].get(fieldName);
+    const field = skills.controls[index].get(fieldName);
     return Boolean(field && field.touched && field.errors?.[errorType]);
+  }
+
+  getSkillFormGroup(){
+    const skills = <FormArray>this.userForm.get('skills');
+    const skillGroup = new FormGroup({
+      skill: new FormControl('', Validators.required),
+      level: new FormControl('', Validators.required),
+    })
+    skills.push(skillGroup);
   }
 
   addSkill() {
     this.clickAdd = true;
-    let skill!: string;
-    let level!: string;
-    if (this.application?.skills.length) {
-      this.application.skills.forEach(item => {
-        skill = item.skill;
-        level = item.level;
-      })
-    } else{
-      skill = '';
-      level = '';
+    if (this.applicationUpdate) {
+      if (this.application?.skills.length !== this.editCount) {
+        this.application?.skills.forEach(item => {
+          const skills = <FormArray>this.userForm.get('skills');
+          const skillGroup = new FormGroup({
+            skill: new FormControl(`${item.skill}`, Validators.required),
+            level: new FormControl(`${item.level}`, Validators.required),
+          })
+          skills.push(skillGroup);
+          this.editCount = <number>this.application?.skills.length;
+        })
+      } else{
+        this.getSkillFormGroup();
+      }
+    } else {
+      this.getSkillFormGroup();
     }
-    const skills = <FormArray>this.userForm.get('skills');
-    const skillGroup = new FormGroup({
-      skill: new FormControl(`${skill}`, Validators.required),
-      level: new FormControl(`${level}`, Validators.required),
-    })
-    skills.push(skillGroup);
   }
 
   getSkillControls() {

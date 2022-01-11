@@ -11,4 +11,10 @@ p{
   width: 53%;
   border-radius: 30px;
 }
+.btn{
+  width: 120px;
+}
+.btn:hover{
+  box-shadow: 0 0 5px 2px grey;
+}
 
