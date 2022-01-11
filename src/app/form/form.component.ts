@@ -53,7 +53,7 @@ export class FormComponent implements OnInit {
           workOrStudy: this.application.workOrStudy,
           gender: this.application.gender,
           size: this.application.size,
-          skills: this.application.skills,
+          skills: [],
           comments: this.application.comments
         })
       }else {
@@ -116,10 +116,21 @@ export class FormComponent implements OnInit {
   }
 
   addSkill() {
+    let skill!: string;
+    let level!: string;
+    if (this.application?.skills.length) {
+      this.application.skills.forEach(item => {
+        skill = item.skill;
+        level = item.level;
+      })
+    } else if(this.application === null){
+      skill = '';
+      level = '';
+    }
     const skills = <FormArray>this.userForm.get('skills');
     const skillGroup = new FormGroup({
-      skill: new FormControl('', Validators.required),
-      level: new FormControl('', Validators.required),
+      skill: new FormControl(`${skill}`, Validators.required),
+      level: new FormControl(`${level}`, Validators.required),
     })
     skills.push(skillGroup);
   }

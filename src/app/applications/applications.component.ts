@@ -15,6 +15,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   deleteSubscription!: Subscription;
   loading = false;
   deleteLoading = false;
+  deleteId = '';
 
   constructor(private applicationService: ApplicationService) { }
 
@@ -32,6 +33,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   onRemove(id: string) {
+    this.deleteId = id;
     this.applicationService.removeApplication(id);
   }
 

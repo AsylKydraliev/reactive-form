@@ -15,7 +15,6 @@ export class ResolverService implements Resolve<Application>{
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Application> | Observable<never> {
     const id = <string>route.params['id'];
     return this.applicationService.getApplication(id).pipe(mergeMap(application => {
-      console.log(application);
       if(application) {
         return of(application);
       }else {
