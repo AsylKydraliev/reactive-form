@@ -16,6 +16,7 @@ export class FormComponent implements OnInit {
   comments = 300;
   applicationId = '';
   application: Application | null = null;
+  clickAdd = false;
 
   constructor(
     private applicationService: ApplicationService,
@@ -116,6 +117,7 @@ export class FormComponent implements OnInit {
   }
 
   addSkill() {
+    this.clickAdd = true;
     let skill!: string;
     let level!: string;
     if (this.application?.skills.length) {
@@ -123,7 +125,7 @@ export class FormComponent implements OnInit {
         skill = item.skill;
         level = item.level;
       })
-    } else if(this.application === null){
+    } else{
       skill = '';
       level = '';
     }

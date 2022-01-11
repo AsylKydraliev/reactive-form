@@ -4,9 +4,9 @@
   </div>
 </div>
 <div *ngIf="!loading">
-  <div class="card m-auto mt-2 text-center col-8 border-4" *ngFor="let item of applications; let i = index">
+  <div class="box card m-auto mt-2 text-center col-8 border-4" *ngFor="let item of applications; let i = index">
     <div class="card-header">
-      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+      <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
       </svg>
@@ -17,19 +17,33 @@
       <p class="card-text m-0">Your place of work or study: <strong>{{ item.workOrStudy }}</strong> </p>
       <p class="card-text m-0">Gender: <strong>{{ item.gender }}</strong></p>
       <p class="card-text m-0">Your size: <strong>{{ item.size }}</strong></p>
-      <div *ngFor="let skill of item.skills; let i = index">
-        <p class="card-text m-0">Your skill: <strong>{{ skill.skill }}</strong></p>
-        <p class="card-text m-0">Your level: <strong>{{ skill.level }}</strong></p>
+      <div *ngFor="let skill of item.skills">
+        <p class="card-text m-0">
+          Your skill: <strong>{{ skill.skill }}</strong>
+          Your level: <strong>{{ skill.level }}</strong>
+        </p>
       </div>
       <p class="card-text m-0">Your comments: <strong>{{ item.comments }}</strong></p>
       <div>
-        <a [routerLink]="[item.id]" class="btn btn-primary">Edit application</a>&nbsp;
+        <a [routerLink]="[item.id]" class="btn btn-primary">
+          Edit application
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+          </svg>
+        </a>&nbsp;
         <button (click)="onRemove(item.id)" class="btn btn-danger" type="button">
           <span *ngIf="deleteId === item.id"
                 class="spinner-border spinner-border-sm"
                 role="status" aria-hidden="true"
           ></span>
-          <span *ngIf="deleteId !== item.id">Delete application</span>
+          <span *ngIf="deleteId !== item.id">
+            Delete application
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder-x" viewBox="0 0 16 16">
+              <path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0 0 13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91H9v1H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zm6.339-1.577A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z"/>
+              <path d="M11.854 10.146a.5.5 0 0 0-.707.708L12.293 12l-1.146 1.146a.5.5 0 0 0 .707.708L13 12.707l1.146 1.147a.5.5 0 0 0 .708-.708L13.707 12l1.147-1.146a.5.5 0 0 0-.707-.708L13 11.293l-1.146-1.147z"/>
+            </svg>
+          </span>
         </button>
       </div>
     </div>

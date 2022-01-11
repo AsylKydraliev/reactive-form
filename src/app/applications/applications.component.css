@@ -1,0 +1,14 @@
+p{
+  font-size: 15px;
+}
+.box{
+  width: 50%;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+.card:hover{
+  box-shadow: 0 0 8px 4px grey;
+  width: 53%;
+  border-radius: 30px;
+}
+

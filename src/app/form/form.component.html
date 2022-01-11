@@ -2,7 +2,7 @@
   <h2 class="mt-2 text-center">{{ applicationId? 'Edit': 'Registration' }}</h2>
 
   <form class="col mt-4" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <div class="mb-3 col-5 mt-3">
+    <div class="mb-3 mt-3">
       <input
         type="text"
         class="form-control"
@@ -16,7 +16,7 @@
         Enter your name
       </small>
     </div>
-    <div class="mb-3 col-5">
+    <div class="mb-3">
       <input
         type="text"
         class="form-control"
@@ -30,7 +30,7 @@
         Enter your surname
       </small>
     </div>
-    <div class="mb-3 col-5">
+    <div class="mb-3">
       <input
         type="text"
         class="form-control"
@@ -44,7 +44,7 @@
         Enter your patronymic
       </small>
     </div>
-    <div class="mb-3 col-5">
+    <div class="mb-3">
       <input
         type="text"
         class="form-control"
@@ -63,11 +63,11 @@
         class="form-text invalid-form-text">
         Enter correct phone number
       </small>
-      <div class="form-text">
+      <div class="form-text text-dark">
         Enter the phone number in the format +996-XXX-YYYYYY
       </div>
     </div>
-    <div class="mb-3 col-5">
+    <div class="mb-3">
       <input
         type="text"
         class="form-control"
@@ -81,7 +81,7 @@
         Enter your place of work or study
       </small>
     </div>
-    <div>
+    <div class="mb-3">
       <div class="form-check mt-3">
         <input
           class="form-check-input"
@@ -95,7 +95,7 @@
           Male
         </label>
       </div>
-      <div class="form-check mb-3">
+      <div class="form-check mb-1">
         <input
           class="form-check-input"
           type="radio"
@@ -108,9 +108,14 @@
           Female
         </label>
       </div>
+      <small
+        *ngIf="fieldHasError('gender', 'required')"
+        class="form-text invalid-form-text">
+        Select your gender
+      </small>
     </div>
 
-    <div class="col-5 mb-3">
+    <div class="mb-3">
       <select
         class="form-select"
         formControlName="size"
@@ -130,8 +135,8 @@
       </small>
     </div>
 
-    <div class="col-5 mb-3" formArrayName="skills">
-      <button (click)="addSkill()" type="button" class="btn btn-outline-info mb-2">Add skill</button>
+    <div class="mb-3" formArrayName="skills">
+      <button (click)="addSkill()" type="button" class="btn btn-outline-danger mb-2">Add skill</button>
       <div class="mb-2 w-100" *ngFor="let skill of getSkillControls(); let i = index">
         <div [formGroupName]="i">
           <div class="d-flex">
@@ -174,7 +179,7 @@
       </div>
     </div>
 
-    <div class="form-floating col-8 mb-3">
+    <div class="form-floating mb-3">
       <textarea
         class="form-control"
         placeholder="Leave a comment here"
@@ -189,14 +194,14 @@
         Enter your comments
       </small>
       <label for="floatingTextarea">Comments</label>
-      <div class="form-text">
+      <div class="form-text text-dark">
         Characters: {{ comments }}
       </div>
     </div>
     <button
-      [disabled]="userForm.invalid"
+      [disabled]="userForm.invalid || clickAdd === false"
       type="submit"
-      class="btn btn-success"
+      class="btn btn-dark"
     >{{applicationId? 'Save':'Submit'}}</button>
   </form>
 </div>

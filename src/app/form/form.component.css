@@ -1,3 +1,14 @@
+.container{
+  margin: 15px auto;
+  padding: 15px 50px;
+  width: 60%;
+  box-shadow: inset  1px 2px 7px 5px #F4F4F4;
+}
+
+small{
+  color: red;
+}
+
 input.ng-invalid.ng-touched{
   box-shadow: 0 0 6px 3px red;
 }
